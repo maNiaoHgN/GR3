@@ -1,0 +1,39 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Hiển Thị Giao Thông</title>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8CeMmkyL0FgHPi4JLZm1djKnoMVRtpSY"></script>
+      <style>
+        #map {
+          height: 100%;
+          width: 100%;
+        }
+        html, body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="map"></div>
+      <script>
+        function initMap() {
+          // Tọa độ trung tâm (Quy Nhơn)
+          const center = { lat: 13.7828, lng: 109.2191 };
+          // Tạo bản đồ
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: center,
+          });
+          // Thêm lớp giao thông
+          const trafficLayer = new google.maps.TrafficLayer();
+          trafficLayer.setMap(map);
+        }
+        // Gọi hàm khi trang tải xong
+        window.onload = initMap;
+      </script>
+    </body>
+    </html>
+    

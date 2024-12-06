@@ -1,0 +1,77 @@
+
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <title>Bản Đồ Giao Thông Với Chú Thích</title>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD8CeMmkyL0FgHPi4JLZm1djKnoMVRtpSY"></script>
+      <style>
+        #map {
+          height: 90%;
+          width: 100%;
+        }
+        #legend {
+          background: white;
+          padding: 10px;
+          font-family: Arial, sans-serif;
+          font-size: 14px;
+          position: absolute;
+          bottom: 20px;
+          left: 20px;
+          z-index: 5;
+          border: 1px solid #ccc;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+        }
+        .legend-item {
+          display: flex;
+          align-items: center;
+          margin-bottom: 5px;
+        }
+        .legend-color {
+          width: 20px;
+          height: 20px;
+          margin-right: 10px;
+          border: 1px solid #000;
+        }
+        .green { background-color: green; }
+        .orange { background-color: orange; }
+        .red { background-color: red; }
+      </style>
+    </head>
+    <body>
+      <div id="map"></div>
+      <div id="legend">
+        <h3>Chú Thích Giao Thông</h3>
+        <div class="legend-item">
+          <div class="legend-color green"></div>
+          <span>Xanh: Lưu thông thông thoáng</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color orange"></div>
+          <span>Cam: Giao thông trung bình</span>
+        </div>
+        <div class="legend-item">
+          <div class="legend-color red"></div>
+          <span>Đỏ: Kẹt xe</span>
+        </div>
+      </div>
+      <script>
+        function initMap() {
+          // Tọa độ trung tâm (Quy Nhơn)
+          const center = { lat: 13.7828, lng: 109.2191 };
+          // Tạo bản đồ
+          const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 13,
+            center: center,
+          });
+          // Thêm lớp giao thông
+          const trafficLayer = new google.maps.TrafficLayer();
+          trafficLayer.setMap(map);
+          // Thêm chú thích vào bản đồ
+          map.controls[google.maps.ControlPosition.LEFT_BOTTOM].push(document.getElementById("legend"));
+        }
+        // Gọi hàm khi trang tải xong
+        window.onload = initMap;
+      </script>
+    </body>
+    </html>
+    
